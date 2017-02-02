@@ -16,6 +16,13 @@ router.get('/:id', function (req, res) {
         res.json(response);
     });
 });
+/* Return user  by email, password */
+router.get('/:email/:password', function (req, res) {
+    config.query('SELECT * FROM users WHERE email=' + '"' + req.params.email + '"' + 'AND password=' + '"' + req.params.password + '"', function (response) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.json(response);
+    });
+});
 /* Return user login */
 router.post('/', function (req, res) {
     config.query('INSERT INTO users(firstname, lastname, email, password) VALUES (' + '"' + req.body.firstname + '", ' +
