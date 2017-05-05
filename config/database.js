@@ -3,10 +3,10 @@
  */
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-    host     : 'localhost',
+    host     : '127.0.0.1',
     user     : 'root',
-    password : '',
-    database: 'node-server'
+    password : '123321a',
+    database: 'node_server'
 });
 //Query
 module.exports.query = function(queryString, callback){

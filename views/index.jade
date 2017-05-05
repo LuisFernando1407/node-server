@@ -1,5 +1,43 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+    h1= title
+        img(src="favicon.ico")
+        hr
+    p <font color="red"><h2><strong><em>Router List</em></strong></h2></font>
+
+    pre
+        |   GET {
+        |           'USERS' {
+        |                   <font color="green">'users'
+        |                   'users/:id'
+        |                   'users/:email/:password</font>
+        |            }<br>
+        |           'TASKS' {
+        |                   <font color="green">'tasks'
+        |                   'tasks/:id'</font>
+        |            }<br>
+        |   }<br>
+        |   POST  {
+        |           'USERS' {
+        |                   <font color="green">'users/user'</font>
+        |            }<br>
+        |            'TASKS' {
+        |                    <font color="green">'tasks/task'</font>
+        |            }<br>
+        |   }<br>
+        |   PUT  {
+        |           'USERS' {
+        |                   <font color="green">'users/user'</font>
+        |            }<br>
+        |            'TASKS' {
+        |                    <font color="green">'tasks/task'</font>
+        |            }<br>
+        |   }<br>
+        |   DELETE  {
+        |            'TASKS' {
+        |                    <font color="green">'tasks/task/:id'</font>
+        |            }<br>
+        |   }
+

@@ -12,7 +12,7 @@ var tasks = require('./routes/tasks');
 var app = express();
 
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:63342');
+    res.header('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

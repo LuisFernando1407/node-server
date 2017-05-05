@@ -19,7 +19,7 @@ router.get('/:id', function (req, res) {
     });
 });
 /* Post Task */
-router.post('/', function (req, res) {
+router.post('/task', function (req, res) {
     config.query('INSERT INTO tasks(user_id, title, task_user, remember_me, favorite) VALUES (' + '"' + req.body.user_id + '", "' +
         req.body.title + '", "' + req.body.task + '", "' + req.body.remember + '", "' + req.body.favorite + '")', function (response) {
         res.setHeader("Access-Control-Allow-Origin", "*");
