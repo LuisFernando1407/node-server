@@ -20,8 +20,8 @@ router.get('/:id', function (req, res) {
 });
 /* Post Task */
 router.post('/task', function (req, res) {
-    config.query('INSERT INTO tasks(user_id, title, task_user, remember_me, favorite) VALUES (' + '"' + req.body.user_id + '", "' +
-        req.body.title + '", "' + req.body.task + '", "' + req.body.remember + '", "' + req.body.favorite + '")', function (response) {
+    config.query('INSERT INTO tasks(user_id, title, task_user, remember_me, priority, favorite, status) VALUES (' + '"' + req.body.user_id + '", "' +
+        req.body.title + '", "' + req.body.task + '", "' + req.body.remember + '", "' + req.body.priority + '", "' + req.body.favorite + '", 0)', function (response) {
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.json(response);
     });
@@ -29,7 +29,7 @@ router.post('/task', function (req, res) {
 /* Put task */
 router.put('/task', function (req, res) {
     config.query('UPDATE tasks SET title=' + '"' +  req.body.title + '", ' + 'task_user=' + '"' + req.body.task_user + '", ' +
-        'remember_me=' + '"' + req.body.remember + '", ' + ' favorite=' + '"' + req.body.favorite + '" ' +  'WHERE id=' + '"' + req.body.id + '"', function (response) {
+        'remember_me=' + '"' + req.body.remember + '", ' + 'priority=' + '"' + req.body.priority + '", ' + 'favorite=' + '"' + req.body.favorite + '" ' + 'WHERE id=' + '"' + req.body.id + '"', function (response) {
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.json(response);
     });
@@ -37,6 +37,13 @@ router.put('/task', function (req, res) {
 /* Delete task */
 router.delete('/task/:id', function (req, res) {
     config.query('DELETE FROM tasks WHERE id=' + '"' +  req.params.id + '"', function (response) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.json(response);
+    });
+});
+/* Finish tasks */
+router.put('/task/finish/:id', function (req, res) {
+    config.query('UPDATE tasks SET status = 1 WHERE id=' + '"' +  req.params.id + '"', function (response) {
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.json(response);
     });
