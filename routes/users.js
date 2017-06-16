@@ -5,7 +5,7 @@ var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
     service: 'hotmail',
     auth: {
-        user: 'mytasksnotification@hotmail.com',
+        user: 'mytasksnotify@hotmail.com',
         pass: 'tasks123a'
     }
 });
@@ -54,20 +54,37 @@ router.put('/user', function (req, res) {
         res.json(response);
     });
 });
+/* Returns everything if OK */
+router.post('/user/check/notification', function (req, res) {
+        config.query('INSERT INTO notification(id_user, email, audio) VALUES (' +
+            '"' + req.body.id_user + '", ' + '"' + req.body.email + '", ' + '"' +  req.body.audio + '")', function (response) {
+            res.setHeader("Access-Control-Allow-Origin", "*");
+            res.json(response);
+        });
+});
 
+router.get('/user/check/notification/:id', function (req, res) {
+    config.query('SELECT * FROM notification WHERE id_user=' + '"' + req.params.id + '"', function (response) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.json(response);
+    });
+});
 /* Returns confirm email */
 router.get('/user/mail/:mail/:tasks', function (req, res) {
     var configuration = {
-        from: 'Seu Nome <luis1407@live.com>',
-        to: '<req.params.mail>',
+        from: 'System My Tasks Notification <mytasksnotify@hotmail.com>',
+        to: '<' + req.params.mail + '>',
         subject: 'Notification Task',
-        html: '<h1>req.params.tasks</h1>'
+        html: '<h4>' + req.params.tasks + '</h4><p>This task is scheduled for today.</p>' +
+        '<p><font color="#179b77"><em>Sincerely,<br>System My Tasks</em></font></p>'
     };
 
     transporter.sendMail(configuration, function(error, info){
         if(error){
+            res.setHeader("Access-Control-Allow-Origin", "*");
             res.json(0);
         }else{
+            res.setHeader("Access-Control-Allow-Origin", "*");
             res.json(1);
         }
     });
