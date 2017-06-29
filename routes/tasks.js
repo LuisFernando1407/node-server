@@ -49,5 +49,13 @@ router.put('/task/finish/:id', function (req, res) {
     });
 });
 
+/* Generate Report */
+router.post('/task/greport', function (req, res) {
+    config.query('SELECT title, task_user, DATE_FORMAT(remember_me,"%d/%m/%Y" ) as remember, priority, status FROM tasks WHERE user_id=' + req.body.id + ' AND remember_me >= ' +  "'" + req.body.date_i + "'" + ' AND remember_me <= ' + "'" + req.body.date_f + "'", function (response) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.json(response);
+    });
+});
+
 module.exports = router;
 
