@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Module dependencies.
+ * Module dependencies and crypt http://www.md5online.org/md5-decrypt.html
  */
 
 var app = require('../app');

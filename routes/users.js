@@ -6,7 +6,7 @@ var transporter = nodemailer.createTransport({
     service: 'hotmail',
     auth: {
         user: 'mytasksnotify@hotmail.com',
-        pass: 'tasks123a'
+        pass: '3da0b25cd1d0ace4dd0fd8706ccf878a'
     }
 });
 /* GET users listing. */
